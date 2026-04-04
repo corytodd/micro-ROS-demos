@@ -126,6 +126,9 @@ int main()
 	(void) rosidl_runtime_c__String__init(&incoming_ping.frame_id);
 	(void) rosidl_runtime_c__String__init(&incoming_pong.frame_id);
 
+	struct timespec seed_ts;
+	clock_gettime(CLOCK_MONOTONIC, &seed_ts);
+	srand(seed_ts.tv_nsec);
 	device_id = rand();
 
 	rclc_executor_spin(&executor);
